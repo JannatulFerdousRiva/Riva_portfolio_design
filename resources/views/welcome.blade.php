@@ -1,144 +1,201 @@
-    @extends('index')
-    @push('style')
-    @endpush
-    @section('main-content')
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-brand-circle d-none d-lg-block me-3"></div>
-            <a class="navbar-brand" href="#">Jannatul Ferdous Riva</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                     <li class="nav-item">
-                        <a class="nav-link" href="#education">Education</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#skills">Skills</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#projects">Projects</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="container main-content mt-5 pt-5">
+@extends('index')
+@push('style')
+<style>
+    :root {
+        --primary-color: #FF69B4;
+        --secondary-color: #FFB6C1;
+        --accent-color: #FF1493;
+        --text-color: #333;
+        --light-pink: #FFF0F5;
+    }
 
-<section id="about-picture" class="row mb-5">
-    <div class="col-md-6 mb-4 mb-md-0">
-        <div class="card h-100 shadow-sm">
-            <div class="card-body">
-                <h4 class="card-title text-center mb-3">About me</h4>
-                <p>Hello! I'm Jannatul Ferdous Riva, a passionate individual dedicated to Web Development. I enjoy bringing ideas to life, analyzing complex data.</p>
-                <p>Outside of my professional life, I have interests in travelling. I believe in the power of collaboration, creating meaningful impact.</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-                <div class="card h-100 shadow-sm text-center">
-                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                        <h5 class="card-title mb-3">Jannatul Ferdous Riva</h5>
-                        <img src="{{asset('assets/images/rj.jpg')}}" alt="Jannatul Ferdous Riva Picture" class="img-fluid rounded-circle border border-primary border-3" style="max-width: 180px;">
-                        <p class="mt-3 text-muted">Email: riva15-4928@diu.edu.bd</p>
-                        <p class="mt-3 text-muted">Pnone: 0177777777</p>
+    body {
+        font-family: 'Poppins', sans-serif;
+        color: var(--text-color);
+        background-color: #fff;
+        overflow-x: hidden;
+    }
+
+    .hero-section {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        opacity: 0.5;
+        animation: move 30s linear infinite;
+    }
+
+    @keyframes move {
+        0% {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+        100% {
+            transform: translate(-50%, -50%) rotate(360deg);
+        }
+    }
+
+    .profile-img {
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+        border: 10px solid rgba(255, 255, 255, 0.3);
+        object-fit: cover;
+        transition: all 0.5s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .profile-img:hover {
+        transform: scale(1.05) rotate(5deg);
+        border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero-title {
+        font-size: 4rem;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-subtitle {
+        font-size: 1.8rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 2rem;
+        font-weight: 300;
+    }
+
+    .hero-description {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.95);
+        margin-bottom: 2.5rem;
+        line-height: 1.6;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .cta-btn {
+        padding: 1rem 2.5rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        background: white;
+        border-radius: 50px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-block;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .cta-btn.outline {
+        background: transparent;
+        color: white;
+        border: 2px solid white;
+    }
+
+    .cta-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .cta-btn.outline:hover {
+        background: white;
+        color: var(--primary-color);
+    }
+
+    .social-links {
+        margin-top: 2rem;
+    }
+
+    .social-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        margin: 0 10px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+    }
+
+    .social-links a:hover {
+        background: white;
+        color: var(--primary-color);
+        transform: translateY(-3px) rotate(8deg);
+    }
+
+    @media (max-width: 991.98px) {
+        .hero-title {
+            font-size: 3rem;
+        }
+        .hero-subtitle {
+            font-size: 1.5rem;
+        }
+        .profile-img {
+            width: 280px;
+            height: 280px;
+            margin-top: 2rem;
+        }
+        .cta-buttons {
+            flex-direction: column;
+        }
+        .cta-btn {
+            text-align: center;
+        }
+    }
+</style>
+@endpush
+
+@section('main-content')
+    <!-- Navigation -->
+    @include('components.navigation')
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center hero-content">
+                <div class="col-lg-6 text-center text-lg-start mb-5 mb-lg-0">
+                    <h1 class="hero-title">Hi, I'm Jannatul Ferdous Riva</h1>
+                    <h2 class="hero-subtitle">Web Developer & Software Engineer</h2>
+                    <p class="hero-description">Transforming ideas into elegant digital solutions with clean code and creative design.</p>
+                    <div class="cta-buttons">
+                        <a href="/contact" class="cta-btn">Let's Connect</a>
+                        <a href="/projects" class="cta-btn outline">View Projects</a>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" target="_blank" title="GitHub"><i class="fab fa-github fa-lg"></i></a>
+                        <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                        <a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="mailto:riva15-4928@diu.edu.bd" title="Email"><i class="fas fa-envelope fa-lg"></i></a>
                     </div>
                 </div>
-            </div>
-        </section>
-        <section id="skills" class="mb-5">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h4 class="card-title text-center mb-3">Skills</h4>
-                    <div class="row text-center">
-                        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-3">
-                            <i class="fab fa-html5 fa-3x text-primary"></i>
-                            <p class="mb-0">HTML</p>
-                        </div>
-                        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-3">
-                            <i class="fab fa-css3-alt fa-3x text-primary"></i>
-                            <p class="mb-0">CSS3</p>
-                        </div>
-                        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-3">
-                            <i class="fab fa-js fa-3x text-primary"></i>
-                            <p class="mb-0">JavaScript</p>
-                        </div>
-                        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-3">
-                            <i class="fab fa-bootstrap fa-3x text-primary"></i>
-                            <p class="mb-0">Bootstrap</p>
-                        </div>
-                        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-3">
-                            <i class="fas fa-database fa-3x text-primary"></i>
-                            <p class="mb-0">Databases</p>
-                        </div>
-                        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-3">
-                            <i class="fab fa-git-alt fa-3x text-primary"></i>
-                            <p class="mb-0">Git/GitHub</p>
-                        </div>
-                        </div>
+                <div class="col-lg-6 text-center">
+                    <img src="{{asset('assets/images/rj.jpg')}}" alt="Jannatul Ferdous Riva" class="profile-img">
                 </div>
             </div>
-        </section>
-        <section id="education" class="mb-5">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h4 class="card-title text-center mb-3">Education</h4>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <h5>B.Sc in CSE, Daffodil Internatinoal University Name</h5>
-                            <p class="mb-1"><em>Year: 2022 - 2025</em></p>
-                        </li>
-                        <li class="list-group-item">
-                            <h5>H.S.C - Dr. Mahbubur Rahman Mollah College</h5>
-                            <p class="mb-1"><em>Year: 2020</em></p>
-                        </li>
-                        </ul>
-                </div>
-            </div>
-        </section>
-        <section id="projects" class="mb-5">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h4 class="card-title text-center mb-3">Projects</h4>
-                    <div class="row row-cols-1 row-cols-md-2 g-4">
-                        <div class="col">
-                            <div class="card h-100">
-                                <img src="https://via.placeholder.com/400x250/FF8833/FFFFFF?text=Project+A" class="card-img-top" alt="Project A">
-                                <div class="card-body">
-                                    <h5 class="card-title">Project A Title</h5>
-                                    <p class="card-text">A brief description of Project A, highlighting its purpose and technologies used (e.g., HTML, CSS, JS).</p>
-                                    <a href="#" class="btn btn-sm btn-primary" target="_blank">View Demo</a>
-                                    <a href="#" class="btn btn-sm btn-secondary" target="_blank">GitHub</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100">
-                                <img src="https://via.placeholder.com/400x250/33AACC/FFFFFF?text=Project+B" class="card-img-top" alt="Project B">
-                                <div class="card-body">
-                                    <h5 class="card-title">Project B Title</h5>
-                                    <p class="card-text">A brief description of Project B, highlighting its purpose and technologies used (e.g., React, Node.js, MongoDB).</p>
-                                    <a href="#" class="btn btn-sm btn-primary" target="_blank">View Demo</a>
-                                    <a href="#" class="btn btn-sm btn-secondary" target="_blank">GitHub</a>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                </div>
-            </div>
-        </section>
-        <footer class="bg-dark text-white text-center py-3">
-        <div class="container">
-            <p class="mb-0">&copy; Copyright <span id="current-year"></span></p>
         </div>
-        </footer>
-        
-        
-
-
-    @endsection
+    </section>
+@endsection
 
